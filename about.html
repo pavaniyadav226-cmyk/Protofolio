@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn more about Pavani Yadav, a B.Tech CSE student at MLRITM passionate about software engineering, clean code, and web development.">
+    <title>Pavani Yadav | About</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-color: #38bdf8;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
+        
+        header { background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px); position: sticky; top: 0; border-bottom: 1px solid #334155; z-index: 1000; }
+        nav { max-width: 1000px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; }
+        .logo { font-weight: bold; font-size: 1.2rem; color: var(--accent-color); text-decoration: none; }
+        nav ul { list-style: none; display: flex; gap: 2rem; }
+        nav ul li a { color: var(--text-muted); text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+        nav ul li a:hover, nav ul li a:focus, nav ul li a[aria-current="page"] { color: var(--accent-color); }
+
+        main { max-width: 1000px; margin: 3rem auto; padding: 0 2rem; }
+        
+        .about-content { background-color: var(--card-bg); border: 1px solid #334155; padding: 2.5rem; border-radius: 12px; }
+        .about-content h1 { font-size: 2.2rem; margin-bottom: 1rem; color: var(--text-color); }
+        .about-content p { color: var(--text-muted); margin-bottom: 1.5rem; font-size: 1.05rem; }
+        
+        .skills-list { display: flex; flex-wrap: wrap; gap: 0.75rem; list-style: none; margin-top: 1rem; }
+        .skills-list li { background-color: #0f172a; border: 1px solid #334155; color: var(--accent-color); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 500; }
+
+        footer { text-align: center; padding: 2rem; color: var(--text-muted); border-top: 1px solid #334155; margin-top: 4rem; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav aria-label="Main Navigation">
+            <a href="index.html" class="logo">Pavani Yadav</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" aria-current="page">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article class="about-content">
+            <h1>About Me</h1>
+            <p>I am currently pursuing my B.Tech in Computer Science and Engineering (CSE) at <strong>MLRITM</strong>. My academic journey has instilled in me a strong foundation in core computer science concepts, problem-solving, and robust software architecture.</p>
+            <p>I love transforming ideas into clean, user-centric, and fully accessible web interfaces. When I'm not coding, I enjoy exploring new tech stacks and refining my algorithmic skills.</p>
+            
+            <h2>Technical Skills</h2>
+            <ul class="skills-list">
+                <li>Semantic HTML5 & WAI-ARIA</li>
+                <li>Advanced CSS3 & Flexbox/Grid</li>
+                <li>JavaScript (ES6+) & DOM Manipulation</li>
+                <li>Responsive Web Architecture</li>
+                <li>Data Structures & Algorithms</li>
+            </ul>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Pavani Yadav. All rights reserved.</p>
+    </footer>
+</body>
+</html>
