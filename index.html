@@ -16,6 +16,7 @@
             --accent-hover: #4f46e5;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
         
         header { background: rgba(11, 15, 25, 0.85); backdrop-filter: blur(12px); position: sticky; top: 0; border-bottom: 1px solid var(--border-color); z-index: 1000; }
@@ -50,6 +51,9 @@
         .tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
         .tag { background-color: rgba(99, 102, 241, 0.1); color: #818cf8; padding: 0.25rem 0.75rem; border-radius: 6px; font-size: 0.8rem; font-weight: 600; border: 1px solid rgba(99, 102, 241, 0.2); }
 
+        .contact-section { background-color: var(--card-bg); border: 1px solid var(--border-color); padding: 3rem; border-radius: 16px; margin-top: 4rem; text-align: center; }
+        .contact-section p { color: var(--text-muted); margin-bottom: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+
         footer { text-align: center; padding: 3rem 0; color: var(--text-muted); border-top: 1px solid var(--border-color); margin-top: 5rem; font-size: 0.9rem; }
     </style>
 </head>
@@ -60,7 +64,7 @@
             <ul>
                 <li><a href="index.html" aria-current="page">Home</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -71,7 +75,7 @@
             <p>A B.Tech Computer Science and Engineering student at <strong>MLRITM</strong>. I build scalable full-stack applications with clean frontends, robust Node.js/Express backends, and optimized database integrations.</p>
             <div class="btn-group">
                 <a href="#projects" class="btn">Explore Projects</a>
-                <a href="contact.html" class="btn btn-outline">Get in Touch</a>
+                <a href="#contact" class="btn btn-outline">Get in Touch</a>
             </div>
         </section>
         
@@ -106,6 +110,12 @@
                     <span style="font-size: 0.850rem; color: var(--accent-color); font-weight: 600;">Database Integrated →</span>
                 </article>
             </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <h2 class="section-title" style="justify-content: center;">Get in Touch</h2>
+            <p>I am currently looking for internship opportunities and full-stack development projects. Have a question or want to connect? Drop me an email!</p>
+            <a href="mailto:your-email@example.com" class="btn">Send Me an Email</a>
         </section>
     </main>
 
