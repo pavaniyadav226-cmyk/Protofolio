@@ -101,12 +101,13 @@
     <!-- Footer -->
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; 2026 Pavani Yadav. [Protofolio repository on GitHub](https://github.com/pavaniyadav226-cmyk/Protofolio).</p>
+           <p>&copy; 2026 Pavani Yadav. Check out the <a href="https://github.com/pavaniyadav226-cmyk/Protofolio" target="_blank" rel="noopener noreferrer">Protofolio repository on GitHub</a>.</p>
         </div>
     </footer>
 
-    <script>
-        // Dynamic Theme Switcher
+    
+       <script>
+        // 1. Dynamic Theme Switcher
         const toggleBtn = document.getElementById('theme-toggle');
         const htmlElement = document.documentElement;
 
@@ -115,6 +116,39 @@
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             htmlElement.setAttribute('data-theme', newTheme);
         });
+
+        // 2. Fetch Projects Dynamically from Node.js/Express Backend
+        async function loadProjects() {
+            // Find or fallback to projects grid container
+            let gridContainer = document.querySelector('.projects-grid');
+            if (!gridContainer) return;
+
+            try {
+                const response = await fetch('http://localhost:5000/api/projects');
+                const projects = await response.json();
+
+                if (!projects || projects.length === 0) {
+                    return; // Keep hardcoded cards if database is empty
+                }
+
+                gridContainer.innerHTML = projects.map(project => `
+                    <article class="project-card">
+                        <div class="card-content">
+                            <h3>${project.title}</h3>
+                            <p>${project.description}</p>
+                            <div class="tech-tags">
+                                ${(project.techStack || []).map(tech => `<span>${tech}</span>`).join('')}
+                            </div>
+                            <a href="https://github.com/pavaniyadav226-cmyk/Protofolio" target="_blank" rel="noopener noreferrer" class="card-link">View Source &rarr;</a>
+                        </div>
+                    </article>
+                `).join('');
+            } catch (error) {
+                console.log('Using static projects (backend server offline):', error);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadProjects);
     </script>
 </body>
 </html>
