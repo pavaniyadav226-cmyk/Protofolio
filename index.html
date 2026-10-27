@@ -3,152 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pavani Yadav | Full-Stack Portfolio</title>
+    <title>Pavani Yadav | Interactive Task Manager</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header & Navigation -->
+    <!-- Header -->
     <header class="site-header">
         <div class="container nav-container">
             <a href="#home" class="logo">Pavani<span>.dev</span></a>
-            <nav class="nav-menu">
-                <a href="#home">Home</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
-            </nav>
             <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
         </div>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero-section">
-            <div class="container hero-content">
-                <div class="hero-text">
-                    <h1>Hi, I'm Pavani Yadav</h1>
-                    <p>A B.Tech Computer Science and Engineering student at MLRITM. I build scalable full-stack applications featuring responsive frontends, secure backend architectures, and optimized database integrations.</p>
-                    <div class="cta-group">
-                        <a href="#projects" class="btn btn-primary">Explore Projects</a>
-                        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-                    </div>
-                </div>
+    <main class="container main-content">
+        <section class="todo-section">
+            <h1 class="section-title">Task Management App</h1>
+            
+            <!-- Task Input Form -->
+            <form id="todo-form" class="todo-form">
+                <input type="text" id="todo-input" placeholder="What needs to be done?" required autocomplete="off">
+                <button type="submit" class="btn btn-primary">Add Task</button>
+            </form>
+
+            <!-- Filter Controls -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="active">Active</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
             </div>
-        </section>
 
-        <!-- Projects Section (CSS Grid) -->
-        <section id="projects" class="projects-section">
-            <div class="container">
-                <h2 class="section-title">Projects</h2>
-                <div class="projects-grid">
-                    
-                    <article class="project-card">
-                        <div class="card-content">
-                            <h3>Task Management Web App</h3>
-                            <p>End-to-end task manager supporting JWT user authentication, real-time tracking, and complete CRUD functionality.</p>
-                            <div class="tech-tags">
-                                <span>React.js</span>
-                                <span>Node.js</span>
-                                <span>Express</span>
-                                <span>MongoDB</span>
-                            </div>
-                            <a href="https://github.com/pavaniyadav226-cmyk/Protofolio" target="_blank" rel="noopener noreferrer" class="card-link">View Source &rarr;</a>
-                        </div>
-                    </article>
+            <!-- Dynamic Task List Container -->
+            <ul id="todo-list" class="todo-list">
+                <!-- Tasks will be dynamically rendered here -->
+            </ul>
 
-                    <article class="project-card">
-                        <div class="card-content">
-                            <h3>E-Commerce Storefront</h3>
-                            <p>Online retail platform featuring dynamic product cataloging, secure user cart processing, and relational database inventory records.</p>
-                            <div class="tech-tags">
-                                <span>HTML5/CSS3</span>
-                                <span>JavaScript</span>
-                                <span>Node.js</span>
-                                <span>MySQL</span>
-                            </div>
-                            <a href="https://github.com/pavaniyadav226-cmyk/Protofolio" target="_blank" rel="noopener noreferrer" class="card-link">View Source &rarr;</a>
-                        </div>
-                    </article>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact-section">
-            <div class="container contact-container">
-                <h2 class="section-title">Get in Touch</h2>
-                <p class="contact-subtitle">Feel free to reach out for collaborations, full-stack opportunities, or just to say hello!</p>
-                <form class="contact-form">
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" required placeholder="Enter your name">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Your Email</label>
-                        <input type="email" id="email" required placeholder="Enter your email">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Your Message</label>
-                        <textarea id="message" rows="5" required placeholder="Type your message here..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-submit">Send Message</button>
-                </form>
+            <!-- Task Counter & Clear Completed -->
+            <div class="todo-footer">
+                <span id="task-count">0 items left</span>
+                <button id="clear-completed" class="btn-text">Clear Completed</button>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="container">
-           <p>&copy; 2026 Pavani Yadav. Check out the <a href="https://github.com/pavaniyadav226-cmyk/Protofolio" target="_blank" rel="noopener noreferrer">Protofolio repository on GitHub</a>.</p>
-        </div>
-    </footer>
-
-    
-       <script>
-        // 1. Dynamic Theme Switcher
-        const toggleBtn = document.getElementById('theme-toggle');
-        const htmlElement = document.documentElement;
-
-        toggleBtn.addEventListener('click', () => {
-            const currentTheme = htmlElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            htmlElement.setAttribute('data-theme', newTheme);
-        });
-
-        // 2. Fetch Projects Dynamically from Node.js/Express Backend
-        async function loadProjects() {
-            // Find or fallback to projects grid container
-            let gridContainer = document.querySelector('.projects-grid');
-            if (!gridContainer) return;
-
-            try {
-                const response = await fetch('http://localhost:5000/api/projects');
-                const projects = await response.json();
-
-                if (!projects || projects.length === 0) {
-                    return; // Keep hardcoded cards if database is empty
-                }
-
-                gridContainer.innerHTML = projects.map(project => `
-                    <article class="project-card">
-                        <div class="card-content">
-                            <h3>${project.title}</h3>
-                            <p>${project.description}</p>
-                            <div class="tech-tags">
-                                ${(project.techStack || []).map(tech => `<span>${tech}</span>`).join('')}
-                            </div>
-                            <a href="https://github.com/pavaniyadav226-cmyk/Protofolio" target="_blank" rel="noopener noreferrer" class="card-link">View Source &rarr;</a>
-                        </div>
-                    </article>
-                `).join('');
-            } catch (error) {
-                console.log('Using static projects (backend server offline):', error);
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', loadProjects);
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>
