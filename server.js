@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Database Connection Configuration (MongoDB / MySQL)
+// Database Connection Configuration
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/portfolio_db';
 
@@ -14,7 +14,7 @@ mongoose.connect(MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
-    console.log('Database connected successfully (MongoDB / MySQL integration active)');
+    console.log('Database connected successfully (MongoDB integration active)');
 }).catch(err => {
     console.error('Database connection error:', err);
 });
@@ -34,6 +34,17 @@ app.get('/api/projects', async (req, res) => {
         res.status(200).json(projects);
     } catch (error) {
         res.status(500).json({ error: 'Failed to retrieve project data from database' });
+    }
+});
+
+// Added: Optional POST endpoint to easily seed initial projects
+app.post('/api/projects', async (req, res) => {
+    try {
+        const newProject = new Project(req.body);
+        const savedProject = await newProject.save();
+        res.status(201).json(savedProject);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to save project' });
     }
 });
 
